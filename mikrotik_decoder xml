@@ -1,0 +1,22 @@
+#MikrotikDecoders
+#Modifyitatyourwill.
+#Copyright(C)2024,ghxyss
+
+<!--
+
+ Log Format :
+ Oct 12 11:47:40 CCR1009-IDN_Baru login failure for user ITw from 172.16.9.93 via winbox
+
+-->
+
+<decoder name="mikrotik">
+  <prematch>^login</prematch>
+</decoder>
+
+<decoder name="mikrotik_router">
+  <parent>mikrotik</parent>
+  <regex offset="after_parent">^(\.+) for user (\.+) from (\d+.\d+.\d+.\d+) via (\.+)</regex>
+  <order>status,user,srcip,method</order>
+</decoder>
+
+
